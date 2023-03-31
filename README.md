@@ -8,9 +8,6 @@ Power Facility Soh Streaming  (2023.03.31~)
 ![draft](https://user-images.githubusercontent.com/97713997/229030147-74484849-311f-459c-bb73-ce670a166a52.PNG)
 
 1. 데이터 -> ai허브에 있는 전력 설비 에너지 패턴 및 고장 분석 센서 데이터를 이용하고자 했습니다.
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 데이터는 설비별 1분 간격으로 측정된 센서 데이터가 json 파일로 저장 되어 있습니다.
-<br>
 2. 메세지 브로커
 3. 스트림 처리
 4. 스트림 처리 DB
