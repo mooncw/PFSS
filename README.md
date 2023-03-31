@@ -6,3 +6,14 @@ Power Facility Soh Streaming  (2023.03.31~)
 
 ## 데이터파이프라인
 ![draft](https://user-images.githubusercontent.com/97713997/229030147-74484849-311f-459c-bb73-ce670a166a52.PNG)
+
+1. 데이터
+찾아보고 쓸만한 것이 없다면 만드는 것도 
+2. 메세지 브로커
+3. 스트림 처리
+4. 스트림 처리 DB
+5. 실시간 뷰
+6. 배치 처리 DB
+7. 배치 처리
+8. 데이터 마트
+9. 배치 뷰
