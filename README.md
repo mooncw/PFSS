@@ -28,6 +28,7 @@ influxdb 사용
 #### 실시간 뷰
 grafana 사용
 #### 배치 처리 DB
+spark warehouse로 hdfs 사용
 #### 배치 처리
 #### 데이터 마트
 #### 배치 뷰
