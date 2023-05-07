@@ -57,6 +57,8 @@ spark structured streaming 구조를 사용하였습니다.
 grafana 사용했습니다.
 <br>
 대시보드는 5초마다 갱신되고 각 센서의 pf 값과 pf 상태를 시각화하도록 구성했습니다.
+<br>
+![그라파나](https://user-images.githubusercontent.com/97713997/236662277-ded1aff4-cde6-4a74-93ef-9ec1d738845c.png)
 #### 배치 처리 DB(DW)
 저장하기 쉬운 spark warehouse로 hdfs 사용했습니다.
 <br>
