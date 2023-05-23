@@ -6,8 +6,8 @@ Power Facility Soh Streaming  (2023.03.31~2023.05.03)
 <br>
 이때 생각한 데이터 파이프라인 아키텍처로 람다 아키텍처를 떠올렸고, 일단 스트리밍 처리부분을 구현하고자 했습니다.
 
-## 데이터 파이프라인(초안)
-![draft](https://user-images.githubusercontent.com/97713997/229030147-74484849-311f-459c-bb73-ce670a166a52.PNG)
+## 데이터 파이프라인
+![image](https://github.com/mooncw/PFSS/assets/97713997/383b3ae8-9665-46b1-a78b-b6695fe0dbdd)
 
 #### 데이터
 ai허브에 있는 전력 설비 에너지 패턴 및 고장 분석 센서 데이터를 이용하고자 했습니다.
