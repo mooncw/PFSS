@@ -30,9 +30,10 @@ aws ec2를 이용하여 1개의 master 서버와 3개의 worker 서버들로 구
 #### 메세지 브로커
 Kafka를 사용하였고 tar를 다운로드하고 3개의 worker 서버들에 설치하여 3개의 클러스터로 구성했습니다.
 <br>
-먼저 python으로 구현한 가상의 센서들에서 Kafka로 데이터를 보내면 Kafka에서 Spark로 데이터를 보내고 Spark에서 스트림 처리를 하고난 후 데이터를 다시 Kafka로 보내도록 구성했습니다.
+Kafka에 2개의 토픽 'heat'와 'heat_pf'가 존재합니다.
+'heat'는 가상의 센서가 프로듀서이고 Spark가 컨슈머입니다.
 <br>
-또한 Kafka에서 influxdb로 데이터를 보냅니다.
+'heat_pf'는 spark가 프로듀서이고 Influxdb가 컨슈머입니다. 
 <br>
 Kafka를 중앙화함으로써 확장성을 가지도록 했습니다.
 <br>
@@ -44,11 +45,15 @@ Spark를 사용하였고 분산환경에 맞게 구성했습니다.
 <br>
 spark structured streaming 구조 즉, Spark Session을 사용하였습니다.
 <br>
-스트림 처리 과정은 Kafka에서 받은 데이터를 DataFrame로 가져와서 원하는 형태의 DataFrame으로 변환하고,
+스트림 처리 과정은 2개의 쿼리를 사용합니다.
 <br>
-간단하게 만든 ml모델을 이용해 label을 predict하고 그 값과 함께 새로운 DataFrame을 만들어서 다시 Kafka로 데이터를 보냅니다.
+하나는 Kafka에서 받은 데이터를 HDFS DW로 보내는 쿼리입니다.
 <br>
-여기서 모델이 predict하는 쿼리와 Kafka로 보내는 쿼리가 있습니다. (쿼리 확인 요망)
+다른 하나는 Kafka에서 받은 데이터를 변환한 새로운 DataFrame을 다시 Kafka에 보내는 쿼리입니다.
+<br>
+여기서 변환 과정은 Kafka에서 받은 데이터를 DataFrame으로 가져와서 원하는 형태의 DataFrame으로 변환하고,
+<br>
+간단하게 만든 ml모델을 이용해 label을 predict하고 그 값과 함께 새로운 DataFrame을 만듭니다.
 #### 스트림 처리 DB
 시계열 데이터 db에 적합하고 전통적인 influxdb를 사용했습니다.
 <br>
@@ -61,6 +66,6 @@ grafana 사용했습니다.
 <br>
 ![그라파나1](https://user-images.githubusercontent.com/97713997/236662390-c805eef6-a1d3-4099-a813-9a2fd5d78b45.png)
 #### 데이터 웨어하우스
-저장하기 쉬운 spark warehouse로 hdfs 사용했습니다.
+Spark warehouse로 hdfs를 사용했습니다.
 
 ## 파일설명
