@@ -24,7 +24,7 @@ ai허브에 있는 전력 설비 에너지 패턴 및 고장 분석 센서 데�
 #### 분산환경
 aws ec2를 이용하여 1개의 master 서버와 3개의 worker 서버들로 구성했습니다.
 <br>
-각 서버는 cpu 2코어, ram 8G, 볼 50G로 구성했습니다. (m5a.large)
+각 서버는 cpu 2코어, ram 8G, 볼륨 50G로 구성했습니다. (m5a.large)
 <br>
 각 서버는 authorized_keys를 이용해 서로 통신하도록 했습니다.
 <br>
