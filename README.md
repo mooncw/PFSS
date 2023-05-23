@@ -43,7 +43,9 @@ Kafka에서의 데이터의 보존 기간은 24시간으로 설정했습니다.
 #### 스트림 처리
 Spark를 사용하였고 분산환경에 맞게 구성했습니다.
 <br>
-spark structured streaming 구조 즉, Spark Session을 사용하였습니다.
+spark structured streaming 구조 즉, Spark Session을 사용했습니다.
+<br>
+효율적인 작업을 위해 클러스터 매니저는 YARN을 사용했습니다.
 <br>
 스트림 처리 과정은 2개의 쿼리를 사용합니다.
 <br>
