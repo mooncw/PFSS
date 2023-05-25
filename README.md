@@ -67,12 +67,14 @@ grafana 사용했습니다.
 <br>
 <br>
 ![그라파나1](https://user-images.githubusercontent.com/97713997/236662390-c805eef6-a1d3-4099-a813-9a2fd5d78b45.png)
+<br>
 #### 데이터 웨어하우스
 Spark warehouse로 hdfs를 사용했습니다.
 <br>
+아래 이미지와 같이 hdfs 위에 보통 데이터 하나씩 저장이 됩니다.
+<br>
 <br>
 ![image](https://github.com/mooncw/PFSS/assets/97713997/1448a7f2-a145-45fa-a692-3ba4e41470eb)
-
 
 ## 파일설명
 **DataToDashboard.ipynb** : 데이터를 대시보드에 보내기 위해 데이터가 Kafka에서 InfluxDB로 이동하는 코드
