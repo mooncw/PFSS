@@ -1,10 +1,10 @@
 # PFSS
-Power Facility Soh Streaming  (2023.03.31~2023.05.03)
+Power Facility Soh Streaming  (2023.04~2023.05)
 
 ## 개요
 빅데이터 기술에 대한 이론을 공부하고 만약 전력설비의 데이터를 실시간으로 받아서 soh 상태를 시각적으로 확인하면 손쉽게 이상 징후를 파악할 수 있지 않을까라는 생각에 시작하게 되었습니다.
 <br>
-이때 생각한 데이터 파이프라인 아키텍처로 람다 아키텍처를 떠올렸고, 일단 스트리밍 처리부분을 구현하고자 했습니다.
+이때 생각한 데이터 파이프라인 아키텍처로 람다 아키텍처를 떠올렸고, 그 중 스트리밍 처리부분을 구현하고자 했습니다.
 
 ## 데이터 파이프라인
 ![image](https://github.com/mooncw/PFSS/assets/97713997/383b3ae8-9665-46b1-a78b-b6695fe0dbdd)
@@ -71,3 +71,10 @@ grafana 사용했습니다.
 Spark warehouse로 hdfs를 사용했습니다.
 
 ## 파일설명
+DataToDashboard.ipynb : 데이터를 대시보드에 보내기 위해 데이터가 Kafka에서 InfluxDB로 이동하는 코드
+KtoStoK.ipynb : pyspark로 Kafka에 데이터를 받아 스트림 처리를 하고 다시 Kafka로 보내는 코드
+dataTypeExample.md : 가상의 센서 데이터 예시
+draft-datapipeline.md : 람다 아키텍처 파이프라인(그림)
+kafka_pro2.py : 가상의 센서 데이터를 Kafka로 보내는 코드
+
+## 개선사항
