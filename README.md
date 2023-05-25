@@ -72,9 +72,13 @@ Spark warehouse로 hdfs를 사용했습니다.
 
 ## 파일설명
 DataToDashboard.ipynb : 데이터를 대시보드에 보내기 위해 데이터가 Kafka에서 InfluxDB로 이동하는 코드
+<br>
 KtoStoK.ipynb : pyspark로 Kafka에 데이터를 받아 스트림 처리를 하고 다시 Kafka로 보내는 코드
+<br>
 dataTypeExample.md : 가상의 센서 데이터 예시
+<br>
 draft-datapipeline.md : 람다 아키텍처 파이프라인(그림)
+<br>
 kafka_pro2.py : 가상의 센서 데이터를 Kafka로 보내는 코드
 
 ## 개선사항
