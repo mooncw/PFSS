@@ -9,7 +9,7 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 ## 데이터 파이프라인
 ![image](https://github.com/mooncw/PFSS/assets/97713997/383b3ae8-9665-46b1-a78b-b6695fe0dbdd)
 
-#### 데이터
+#### ****데이터****
 ai허브에 있는 전력 설비 에너지 패턴 및 고장 분석 센서 데이터를 이용하고자 했습니다.
 <br>
 이 데이터는 설비별 1분 간격의 센서 데이터를 json 파일로 저장되어 있습니다.
