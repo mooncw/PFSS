@@ -47,11 +47,11 @@ spark structured streaming 구조 즉, Spark Session을 사용했습니다.
 <br>
 효율적인 작업을 위해 클러스터 매니저는 YARN을 사용했습니다.
 <br>
-스트림 처리 과정은 2개의 쿼리를 사용합니다.
+스트림 처리 과정은 2개의 쿼리 'writeDW'와 'pf_pred_to_kafka'를 사용합니다.
 <br>
-하나는 Kafka에서 받은 데이터를 HDFS DW로 보내는 쿼리입니다.
+'writeDW'는 Kafka에서 받은 데이터를 HDFS DW로 보내는 쿼리입니다.
 <br>
-다른 하나는 Kafka에서 받은 데이터를 변환한 새로운 DataFrame을 다시 Kafka에 보내는 쿼리입니다.
+'pf_pred_to_kafka'는 Kafka에서 받은 데이터를 변환한 새로운 DataFrame을 다시 Kafka에 보내는 쿼리입니다.
 <br>
 여기서 변환 과정은 Kafka에서 받은 데이터를 DataFrame으로 가져와서 원하는 형태의 DataFrame으로 변환하고,
 <br>
