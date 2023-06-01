@@ -77,6 +77,7 @@ Spark warehouse로 hdfs를 사용했습니다.
 ![image](https://github.com/mooncw/PFSS/assets/97713997/1448a7f2-a145-45fa-a692-3ba4e41470eb)
 
 ## 결과
+![5sensor](https://github.com/mooncw/PFSS/assets/97713997/c294e7f9-10a3-4244-a5db-3ce23c5c066e)
 5초에 약 3000B 크기의 데이터를 스트림 처리를 합니다.
 
 ## 파일설명
