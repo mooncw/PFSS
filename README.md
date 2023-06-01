@@ -6,6 +6,9 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 <br>
 이때 생각한 데이터 파이프라인 아키텍처로 람다 아키텍처를 떠올렸고, 그 중 스트리밍 처리부분을 구현하고자 했습니다.
 
+## 사용 기술 스택
+Python, AWS EC2, Jupyter notebook, Kafka, Spark, Hadoop, InfluxDB, Grafana
+
 ## 데이터 파이프라인
 ![image](https://github.com/mooncw/PFSS/assets/97713997/383b3ae8-9665-46b1-a78b-b6695fe0dbdd)
 
@@ -19,6 +22,7 @@ ai허브에 있는 전력 설비 에너지 패턴 및 고장 분석 센서 데�
 설비별 센서로부터 5초 마다 받기 위해서 비동기 프로그래밍으로 센서마다 데이터를 Kafka 서버에 전송하도록 했습니다.
 <br>
 이 때 비동기 프로그래밍에 사용한 것은 python의 asyncio 라이브러리입니다.
+
 #### 분산환경
 aws ec2를 이용하여 1개의 master 서버와 3개의 worker 서버들로 구성했습니다.
 <br>
@@ -27,6 +31,7 @@ aws ec2를 이용하여 1개의 master 서버와 3개의 worker 서버들로 구
 각 서버는 authorized_keys를 이용해 서로 통신하도록 했습니다.
 <br>
 필요한 경우 port를 개방하여 외부 서버가 접근할 수 있도록 했습니다.
+
 #### 메세지 브로커
 Kafka를 사용하였고 3개의 worker 서버들에 설치하여 3개의 클러스터로 구성했습니다.
 <br>
@@ -40,6 +45,7 @@ Kafka를 중앙화함으로써 확장성을 가지도록 했습니다.
 Kafka에서의 데이터의 보존 기간은 24시간으로 설정했습니다.
 <br>
 24시간으로 설정한 이유는 센서데이터는 DW로 보내지고, 이 후에 배치처리가 구현이 된다면 최대 24시간 마다의 배치처리를 할 것이라 예상이 되기에 24시간이상 가지고 있을 필요가 없다고 판단하였기 때문입니다.
+
 #### 스트림 처리
 Spark를 사용하였고 분산환경에 맞게 구성했습니다.
 <br>
@@ -56,10 +62,12 @@ spark structured streaming 구조 즉, Spark Session을 사용했습니다.
 여기서 변환 과정은 Kafka에서 받은 데이터를 DataFrame으로 가져와서 원하는 형태의 DataFrame으로 변환하고,
 <br>
 간단하게 만든 ml모델을 이용해 label을 predict하고 그 값과 함께 새로운 DataFrame을 만듭니다.
+
 #### 스트림 처리 DB
 시계열 데이터 db에 적합하고 전통적인 influxdb를 사용했습니다.
 <br>
 보존 기간은 Kafka에서와 같은 이유로 24시간으로 설정했습니다.
+
 #### 실시간 뷰
 grafana 사용했습니다.
 <br>
@@ -68,6 +76,7 @@ grafana 사용했습니다.
 <br>
 ![image](https://github.com/mooncw/PFSS/assets/97713997/0d8d1317-bb10-4200-a485-3553870b9f6e)
 <br>
+
 #### 데이터 웨어하우스
 Spark warehouse로 hdfs를 사용했습니다.
 <br>
@@ -78,7 +87,10 @@ Spark warehouse로 hdfs를 사용했습니다.
 
 ## 결과
 ![5sensor](https://github.com/mooncw/PFSS/assets/97713997/c294e7f9-10a3-4244-a5db-3ce23c5c066e)
-5초에 약 3000B 크기의 데이터를 스트림 처리를 합니다.
+<br>
+5초에 약 3000B 크기의 데이터를 스트림 처리를 합니다.(가상 센서 1개당 약 600B)
+<br>
+가지고 있는 74개의 가상 센서를 모두 돌려본 결과 메시지 누락없이 처리는 하지만 데이터 처리에서 큰 지연이 발생합니다.
 
 ## 파일설명
 **DataToDashboard.ipynb** : 데이터를 대시보드에 보내기 위해 데이터가 Kafka에서 InfluxDB로 이동하는 코드
