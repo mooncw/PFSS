@@ -60,17 +60,14 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 #### 실시간 뷰
 * grafana 사용했습니다.
 * 대시보드는 5초마다 갱신되고 5개 센서의 pf 값과 pf 상태를 시각화하도록 구성했습니다.
-<br>
-<br>
-![image](https://github.com/mooncw/PFSS/assets/97713997/0d8d1317-bb10-4200-a485-3553870b9f6e)
-<br>
+
+<img src="https://github.com/mooncw/PFSS/assets/97713997/0d8d1317-bb10-4200-a485-3553870b9f6e" />
 
 #### 데이터 웨어하우스
 * Spark warehouse로 hdfs를 사용했습니다.
 * 아래 이미지와 같이 hdfs 위에 보통 데이터 하나씩 저장이 됩니다.
-<br>
-<br>
-![image](https://github.com/mooncw/PFSS/assets/97713997/1448a7f2-a145-45fa-a692-3ba4e41470eb)
+
+<img src="https://github.com/mooncw/PFSS/assets/97713997/1448a7f2-a145-45fa-a692-3ba4e41470eb" />
 
 ## 결과
 ![5sensor](https://github.com/mooncw/PFSS/assets/97713997/c294e7f9-10a3-4244-a5db-3ce23c5c066e)
