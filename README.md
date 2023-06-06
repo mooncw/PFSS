@@ -7,7 +7,17 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 이때 생각한 데이터 파이프라인 아키텍처로 람다 아키텍처를 떠올렸고, 그 중 스트리밍 처리부분을 구현하고자 했습니다.
 
 ## 사용 기술 스택
-Python, AWS EC2, Jupyter notebook, Kafka, Spark, Hadoop, InfluxDB, Grafana
+<div align="left">
+	<img src="https://img.shields.io/badge/python-3776AB?style=flat&logo=python&logoColor=white" />
+	<img src="https://img.shields.io/badge/amazonec2-FF9900?style=flat&logo=amazonec2&logoColor=white" />
+	<img src="https://img.shields.io/badge/ubuntu-E95420?style=flat&logo=ubuntu&logoColor=white" />
+  <img src="https://img.shields.io/badge/jupyter-F37626?style=flat&logo=jupyter&logoColor=white" />
+  <img src="https://img.shields.io/badge/apachekafka-231F20?style=flat&logo=apachekafka&logoColor=white" />
+  <img src="https://img.shields.io/badge/apachespark-E25A1C?style=flat&logo=apachespark&logoColor=white" />
+  <img src="https://img.shields.io/badge/apachehadoop-66CCFF?style=flat&logo=apachehadoop&logoColor=white" />
+  <img src="https://img.shields.io/badge/influxdb-22ADF6?style=flat&logo=influxdb&logoColor=white" />
+  <img src="https://img.shields.io/badge/grafana-F46800?style=flat&logo=grafana&logoColor=white" />
+</div>
 
 ## 데이터 파이프라인
 ![image](https://github.com/mooncw/PFSS/assets/97713997/383b3ae8-9665-46b1-a78b-b6695fe0dbdd)
