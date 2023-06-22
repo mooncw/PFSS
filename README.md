@@ -64,6 +64,7 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 <img src="https://github.com/mooncw/PFSS/assets/97713997/0d8d1317-bb10-4200-a485-3553870b9f6e" />
 
 ### 분산 스토리지
+* 분산 스토리지를 구성한 이유는 이 후 Hadoop으로 배치 처리하게 될 때 Hbase를 사용한다면 필요할 것이라 생각했기 때문입니다.
 * Hadoop의 hdfs를 사용했습니다.
 * 아래 이미지와 같이 hdfs 위에 보통 데이터 하나씩 저장이 됩니다.
 
