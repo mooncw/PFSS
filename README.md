@@ -47,8 +47,8 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 * Spark를 사용하였고 분산환경에 맞게 구성했습니다.
 * spark structured streaming 구조 즉, Spark Session을 사용했습니다.
 * 효율적인 작업을 위해 클러스터 매니저는 YARN을 사용했습니다.
-* 스트림 처리 과정은 2개의 쿼리 'writeDW'와 'pf_pred_to_kafka'를 사용합니다.
-* 'writeDW'는 Kafka에서 받은 데이터를 분산 스토리지인 HDFS로 보내는 쿼리입니다.
+* 스트림 처리 과정은 2개의 쿼리 'writeHDFS'와 'pf_pred_to_kafka'를 사용합니다.
+* 'writeHDFS'는 Kafka에서 받은 데이터를 분산 스토리지인 HDFS로 보내는 쿼리입니다.
 * 'pf_pred_to_kafka'는 Kafka에서 받은 데이터를 변환한 새로운 DataFrame을 다시 Kafka에 보내는 쿼리입니다.
 * 여기서 변환 과정은 Kafka에서 받은 데이터를 DataFrame으로 가져와서 원하는 형태의 DataFrame으로 변환하고,
 * 간단하게 만든 ml모델을 이용해 label을 predict하고 그 값과 함께 새로운 DataFrame을 만듭니다.
@@ -87,9 +87,9 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 <br>
 **kafka_pro2.py** : 가상의 센서 데이터를 Kafka로 보내는 코드
 
-## 만족스러웠던 점
-* Spark가 제 때 처리할 수 있는 정도의 데이터 양이라면 데이터가 잘 흘러간다는 점
-* 데이터를 받은 ml모델이 예측한 결과를 같이 볼 수 있다는 점
+## 만족스러웠던 부분
+* Spark가 제 때 처리할 수 있는 정도의 데이터 양이라면 데이터가 잘 흘러갑니다.
+* 데이터를 받은 ml모델이 예측한 결과를 실시간으로 같이 볼 수 있었습니다.
 
 ## 개선사항
 * 데이터가 이런 식으로 흐르게 했다라는 정도라 미흡한 부분이 많다고 생각이 됩니다.
