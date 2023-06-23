@@ -54,7 +54,7 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 * 간단하게 만든 ml모델을 이용해 label을 predict하고 그 값과 함께 새로운 DataFrame을 만듭니다.
 
 ### 스트림 처리 DB
-* 시계열 데이터 db에 적합하고 전통적인 influxdb를 사용했습니다.
+* 시계열 데이터 DB에 적합하고 전통적인 influxDB를 사용했습니다.
 * 보존 기간은 Kafka에서와 같은 이유로 24시간으로 설정했습니다.
 
 ### 실시간 뷰
