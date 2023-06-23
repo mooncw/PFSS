@@ -48,7 +48,7 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 * spark structured streaming 구조 즉, Spark Session을 사용했습니다.
 * 효율적인 작업을 위해 클러스터 매니저는 YARN을 사용했습니다.
 * 스트림 처리 과정은 2개의 쿼리 'writeDW'와 'pf_pred_to_kafka'를 사용합니다.
-* 'writeDW'는 Kafka에서 받은 데이터를 HDFS DW로 보내는 쿼리입니다.
+* 'writeDW'는 Kafka에서 받은 데이터를 분산 스토리지인 HDFS로 보내는 쿼리입니다.
 * 'pf_pred_to_kafka'는 Kafka에서 받은 데이터를 변환한 새로운 DataFrame을 다시 Kafka에 보내는 쿼리입니다.
 * 여기서 변환 과정은 Kafka에서 받은 데이터를 DataFrame으로 가져와서 원하는 형태의 DataFrame으로 변환하고,
 * 간단하게 만든 ml모델을 이용해 label을 predict하고 그 값과 함께 새로운 DataFrame을 만듭니다.
