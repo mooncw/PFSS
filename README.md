@@ -20,34 +20,39 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 
 ## 진행 과정
 
-#### 데이터 파이프라인 구상
+### 1. 데이터 파이프라인 구상
+
 ![image](https://github.com/mooncw/PFSS/assets/97713997/383b3ae8-9665-46b1-a78b-b6695fe0dbdd)
 
-### 데이터 수집 & 데이터 전처리
+### 2. 데이터 수집 & 데이터 전처리
 * ai허브에 있는 전력 설비 에너지 패턴 및 고장 분석 센서 데이터를 다운로드했습니다.
 * 이 데이터는 설비별 1분 간격의 센서 데이터를 json파일로 저장되어 있습니다.
 * Pandas를 이용하여 원하는 데이터를 추출하고 변환하여 json 파일로 저장하였습니다.
 
 
-<img src="https://github.com/mooncw/PFSS/assets/97713997/c6d68a85-2fd4-424d-9e5e-29c4f83ca83f" width="50%" height="50%">
+<img src="https://github.com/mooncw/PFSS/assets/97713997/c6d68a85-2fd4-424d-9e5e-29c4f83ca83f" width="60%" height="60%">
 
+<br>
+<br>
 
-### 가상 센서 구현
+### 3. 가상 센서 구현
 * 데이터 파이프라인에서 데이터는 실시간성을 올리기 위해 센서들로부터 5초 마다 데이터를 받고 있다고 가정하였습니다.
 * 설비별 센서로부터 5초 마다 받기 위해서 비동기 프로그래밍으로 센서마다 데이터를 Kafka 서버에 전송하도록 했습니다.
 * 이 때 비동기 프로그래밍에 사용한 것은 python의 asyncio 라이브러리입니다.
 
 
-[이미지]
+<img src="https://github.com/mooncw/PFSS/assets/97713997/fe5eaa76-3314-4c13-a9f3-482a6e7d0dd8" width="52%" height="52%">
 
+<br>
+<br>
 
-### 분산환경
+### 4. 분산환경 구성
 * aws ec2를 이용하여 1개의 master 서버와 3개의 worker 서버들로 구성했습니다.
 * 각 서버는 cpu 2코어, ram 8G, 볼륨 50G로 구성했습니다. (m5a.large)
 * 각 서버는 authorized_keys를 이용해 서로 통신하도록 했습니다.
 * 필요한 경우 port를 개방하여 외부 서버가 접근할 수 있도록 했습니다.
 
-### 메세지 브로커
+### 5. 메세지 브로커 구축
 * Kafka를 사용하였고 3개의 worker 서버들에 설치하여 3개의 클러스터로 구성했습니다.
 * Kafka에 2개의 토픽 'heat'와 'heat_pf'가 존재합니다.
 * 'heat'는 가상의 센서가 프로듀서이고 Spark가 컨슈머입니다.
@@ -56,7 +61,7 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 * Kafka에서의 데이터의 보존 기간은 24시간으로 설정했습니다.
 * 24시간으로 설정한 이유는 센서 데이터는 이 후에 DW로 보내지고 배치처리 파이프라인이 구현이 된다면 최대 24시간 마다의 배치처리를 할 것이라 예상이 되기에 24시간이상 가지고 있을 필요가 없다고 판단하였기 때문입니다.
 
-### 스트림 처리
+### 6. 스트림 처리 구현
 * Spark를 사용하였고 분산환경에 맞게 구성했습니다.
 * spark structured streaming 구조 즉, Spark Session을 사용했습니다.
 * 효율적인 작업을 위해 클러스터 매니저는 YARN을 사용했습니다.
@@ -66,24 +71,45 @@ Power Facility Soh Streaming  (2023.04~2023.05)
 * 여기서 변환 과정은 Kafka에서 받은 데이터를 DataFrame으로 가져와서 원하는 형태의 DataFrame으로 변환하고,
 * 간단하게 만든 ml모델을 이용해 label을 predict하고 그 값과 함께 새로운 DataFrame을 만듭니다.
 
-### 스트림 처리 DB
-* 시계열 데이터 DB에 적합하고 전통적인 influxDB를 사용했습니다.
-* 보존 기간은 Kafka에서와 같은 이유로 24시간으로 설정했습니다.
 
-### 실시간 뷰
-* grafana 사용했습니다.
-* 대시보드는 5초마다 갱신되고 5개 센서의 pf 값과 pf 상태를 시각화하도록 구성했습니다.
+<img src="https://github.com/mooncw/PFSS/assets/97713997/032d64f9-c3b7-4057-bc3f-15f03e33d900" width="60%" height="60%">
+<img src="https://github.com/mooncw/PFSS/assets/97713997/a08ace35-1242-4002-af24-defbd92e2117" width="84%" height="84%">
+<img src="https://github.com/mooncw/PFSS/assets/97713997/db56f9c8-91d3-400c-87f0-6e6413592cc0" width="72%" height="72%">
 
-<img src="https://github.com/mooncw/PFSS/assets/97713997/0d8d1317-bb10-4200-a485-3553870b9f6e" />
+<br>
+<br>
 
-### 분산 스토리지
+### 7. 분산 스토리지 구축
 * 분산 스토리지를 구성한 이유는 이 후 Hadoop으로 배치 처리하게 될 때 Hbase를 사용한다면 필요할 것이라 생각했기 때문입니다.
 * Hadoop의 hdfs를 사용했습니다.
 * 아래 이미지와 같이 hdfs 위에 보통 데이터 하나씩 저장이 됩니다.
 
-<img src="https://github.com/mooncw/PFSS/assets/97713997/1448a7f2-a145-45fa-a692-3ba4e41470eb" />
+<img src="https://github.com/mooncw/PFSS/assets/97713997/1448a7f2-a145-45fa-a692-3ba4e41470eb" width="90%" height="90%">
 
-## 결과
+<br>
+<br>
+
+### 8. 스트림 처리 DB 구축
+* 스트림 처리 DB는 시계열 데이터 DB에 적합하고 전통적인 influxDB를 사용했습니다.
+* 보존 기간은 Kafka에서와 같은 이유로 24시간으로 설정했습니다.
+* Kafka의 'heat_pf' 토픽에서 데이터를 받아와 influxDB에 데이터를 보냅니다.
+
+
+<img src="https://github.com/mooncw/PFSS/assets/97713997/58186d8c-67c3-421c-ba05-016cff32a155" width="48%" height="48%">
+
+<br>
+<br>
+
+### 9. 실시간 뷰 구현
+* 실시간 뷰는 grafana 사용했습니다.
+* 대시보드는 5초마다 갱신되고 5개 센서의 pf 값과 pf 상태를 시각화하도록 구성했습니다.
+
+<img src="https://github.com/mooncw/PFSS/assets/97713997/0d8d1317-bb10-4200-a485-3553870b9f6e" width="70%" height="70%">
+
+<br>
+<br>
+
+## 결과 (7초 동안의 뷰)
 ![5sensor](https://github.com/mooncw/PFSS/assets/97713997/c294e7f9-10a3-4244-a5db-3ce23c5c066e)
 <br>
 * 5초에 약 3000B 크기의 데이터를 스트림 처리를 합니다.(가상 센서 1개당 약 600B)
