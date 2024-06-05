@@ -1,7 +1,6 @@
 from fastapi import FastAPI
+from domain.sensor import sensor_router
 
 app = FastAPI()
 
-@app.get("/hello")
-def hello():
-    return {"message": "PFSS"}
+app.include_router(sensor_router.router)
