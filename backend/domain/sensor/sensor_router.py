@@ -1,25 +1,14 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from database import get_db
+from models import Sensor
 
 router = APIRouter(
     prefix="/api/v1/sensors",
 )
 
-@router.get("/{sensor_id}")
-def find_sensor(sensor_id: int):
-    return
-
-@router.get("/")
-def find_all_sensors():
-    return
-
-@router.get("/id")
-def find_all_sensor_id():
-    return
-
-@router.post("/")
-def create_sensor():
-    return
-
-@router.delete("/{sensor_id}")
-def delete_sensor(sensor_id):
-    return
+@router.get("/code")
+def find_all_sensor_codes(db: Session = Depends(get_db)):
+    _sensor_list = db.query(Sensor).all()
+    return _sensor_list
